@@ -14,5 +14,6 @@ days *= remaining_age
 weeks *= remaining_age
 months *= remaining_age
 
-print(
-    f"Warning you have {days} days, {weeks} weeks, and {months} months left.")
+message = f"Warning you have {days} days, {weeks} weeks, and {months} months left."
+
+print(message)
