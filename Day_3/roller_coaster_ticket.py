@@ -7,6 +7,8 @@ if height >= 120:
         print("Ticket Price $5")
     elif age <= 18:
         print("Ticket price $7")
+    elif age > 45 and age < 55:
+        print("you are in a Midlife crisis so Ticket price $0")
     else:
         print("Ticker price $12")
 
