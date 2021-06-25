@@ -4,10 +4,10 @@ answer_a1 = ''
 answer_b = ''
 answer_c = ''
 
-
 print("You are at home, watching TV in the bedroom. Alone. The power goes out. What do you do?")
 print(
     "A: Your phone battery is low. Yet, you want to stream your show.\nB: You checked the street lights, they're out. Nothing you can do. Let's wait and see.\nC: Look for candles they are somewhere in the basement.")
+
 while answer != 'a' or 'b':
     answer = input().lower()
     if answer == 'a':
