@@ -1,3 +1,6 @@
 {
-    "workbench.colorTheme": "Ayu Mirage Bordered"
+    "workbench.colorTheme": "Ayu Mirage Bordered",
+    "python.linting.pylintEnabled": true,
+    "python.linting.enabled": true,
+    "python.linting.flake8Enabled": false
 }
