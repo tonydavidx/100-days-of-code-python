@@ -1,31 +1,28 @@
 alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l',
+            'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l',
             'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
 
 # direction = input("Type 'encode' to encrypt, type 'decode' to decrypt:\n")
 
 # TODO-1: Create a function called 'encrypt' that takes the 'text' and 'shift' as inputs.
 
+text = input("Type your message:\n").lower()
+shift = int(input("Type the shift number:\n"))
 
-def encrypt():
-    text = input("Type your message:\n").lower()
-    shift = int(input("Type the shift number:\n"))
-    text_index = 0
-    text_length = len(text)
+
+def encrypt(input_text, shift_amount):
     cipher_text = ''
-    while text_index < text_length:
-        letter = text[text_index]
-        for i in alphabet:
-            if i == letter:
-                alphabet_index = alphabet.index(i)
-                cipher_text += alphabet[alphabet_index+shift]
-                print(alphabet.index(i))
+    for letter in input_text:
+        if letter in alphabet:
+            alphabet_index = alphabet.index(letter)
+            new_index = alphabet_index + shift_amount
 
-        text_index += 1
+            cipher_text += alphabet[new_index]
 
-    print(cipher_text)
+    print(f"the encoded text is {cipher_text}")
 
 
-encrypt()
+encrypt(input_text=text, shift_amount=shift)
 # TODO-2: Inside the 'encrypt' function, shift each letter of the 'text' forwards in the alphabet by the shift amount and print the encrypted text.
 # e.g.
 # plain_text = "hello"
