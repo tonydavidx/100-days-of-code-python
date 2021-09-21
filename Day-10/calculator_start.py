@@ -18,18 +18,30 @@ operations = {
     "/": divide,
 }
 
-num1 = int(input('What is the first number? '))
 
-for o in operations:
-    print(o)
+def calculator():
+    isContinue = True
+    num1 = int(input('What is the first number? '))
 
-operation_symbol = input('Pick an operation from the line above: ')    
+    for o in operations:
+        print(o)
 
-num2 = int(input('What is the second number? '))
+    while isContinue:
+        operation_symbol = input('Pick an operation: ')    
+
+        num2 = int(input('What is the next number? '))
+
+        calculation = operations[operation_symbol]
+
+        answer = calculation(num1,num2)
+
+        print(f"{num1} {operation_symbol} {num2} = {answer}")
+
+        if input(f"type 'y' to calculate with {answer} or 'n' to start new calculation: ")=='y':
+            num1 = answer
+        else:
+            isContinue = False
+            calculator()  
 
 
-calculation = operations[operation_symbol]
-
-answer = calculation(num1,num2)
-
-print(f"{num1} {operation_symbol} {num2} = {answer}")
+calculator()
