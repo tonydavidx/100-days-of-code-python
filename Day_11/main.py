@@ -47,11 +47,31 @@ def deal_card():
 user_cards = []
 computer_cards = []
 
+user_cards.append(deal_card())
+user_cards.append(deal_card())
 
+computer_cards.append(deal_card())
+computer_cards.append(deal_card())
 # Hint 6: Create a function called calculate_score() that takes a List of cards as input
 # and returns the score.
 # Look up the sum() function to help you do this.
 
+
+def calculate_score(user, computer):
+    user = user_cards
+    user_score = sum(user)
+    if user_score == 21:
+        user_score = 0
+
+    computer = computer_cards
+    computer_score = sum(computer)
+    if computer_score == 21:
+        computer_score = 0
+
+    return f'user score: {user_score}, computer score: {computer_score}'
+
+
+print(calculate_score(user_cards, computer_cards))
 # Hint 7: Inside calculate_score() check for a blackjack (a hand with only 2 cards: ace + 10) and return 0 instead of the actual score. 0 will represent a blackjack in our game.
 
 # Hint 8: Inside calculate_score() check for an 11 (ace). If the score is already over 21, remove the 11 and replace it with a 1. You might need to look up append() and remove().
