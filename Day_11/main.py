@@ -36,7 +36,8 @@
 
 import random
 
-cards = [11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10]
+# cards = [11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10]
+cards = [10, 11, 10]
 
 
 def deal_card():
@@ -56,25 +57,55 @@ computer_cards.append(deal_card())
 # and returns the score.
 # Look up the sum() function to help you do this.
 
-
-def calculate_score(user, computer):
-    user = user_cards
-    user_score = sum(user)
-    if user_score == 21:
-        user_score = 0
-
-    computer = computer_cards
-    computer_score = sum(computer)
-    if computer_score == 21:
-        computer_score = 0
-
-    return f'user score: {user_score}, computer score: {computer_score}'
-
-
-print(calculate_score(user_cards, computer_cards))
 # Hint 7: Inside calculate_score() check for a blackjack (a hand with only 2 cards: ace + 10) and return 0 instead of the actual score. 0 will represent a blackjack in our game.
 
 # Hint 8: Inside calculate_score() check for an 11 (ace). If the score is already over 21, remove the 11 and replace it with a 1. You might need to look up append() and remove().
+
+game_over = False
+
+
+def calculate_score(user, computer):
+
+    def check_ace(hand):
+        if 11 in hand:
+            if sum(hand) > 21:
+                hand.remove(11)
+                hand.append(1)
+
+    user = user_cards
+    check_ace(hand=user)
+    user_score = sum(user)
+
+    computer = computer_cards
+    check_ace(hand=computer)
+    computer_score = sum(computer)
+
+    def is_21(hand):
+        if len(hand) == 2:
+            if sum(hand) == 21:
+                return 0
+
+    if is_21(user) == 0 and is_21(computer) == 0:
+        user_score = 0
+        computer_score = 0
+    elif is_21(computer) == 0:
+        computer_score = 0
+    elif is_21(user) == 0:
+        user_score = 0
+
+    print(f'user cards: {user}, computer cards: {computer}')
+
+    def is_blackjack():
+        if user_score == 0 or user_score > 21:
+            game_over = True
+        if computer_score == 0 or computer_score > 21:
+            game_over = True
+
+    is_blackjack()
+
+
+calculate_score(user_cards, computer_cards)
+
 
 # Hint 9: Call calculate_score(). If the computer or the user has a blackjack (0) or if the user's score is over 21, then the game ends.
 
