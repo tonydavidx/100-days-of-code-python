@@ -64,13 +64,15 @@ computer_cards.append(deal_card())
 game_over = False
 
 
-def calculate_score(user, computer):
+def check_ace(hand):
+    if 11 in hand:
+        if sum(hand) > 21:
+            hand.remove(11)
+            hand.append(1)
 
-    def check_ace(hand):
-        if 11 in hand:
-            if sum(hand) > 21:
-                hand.remove(11)
-                hand.append(1)
+
+def calculate_score(user, computer):
+    score = []
 
     user = user_cards
     check_ace(hand=user)
@@ -80,33 +82,29 @@ def calculate_score(user, computer):
     check_ace(hand=computer)
     computer_score = sum(computer)
 
-    def is_21(hand):
-        if len(hand) == 2:
-            if sum(hand) == 21:
-                return 0
-
-    if is_21(user) == 0 and is_21(computer) == 0:
-        user_score = 0
-        computer_score = 0
-    elif is_21(computer) == 0:
-        computer_score = 0
-    elif is_21(user) == 0:
-        user_score = 0
-
-    print(f'user cards: {user}, computer cards: {computer}')
-
-    def is_blackjack():
-        if user_score == 0 or user_score > 21:
-            game_over = True
-        if computer_score == 0 or computer_score > 21:
-            game_over = True
-
-    is_blackjack()
+    score.append(user_score)
+    score.append(computer_score)
+    print(f"Your Cards {user}, current score: {user_score}")
+    print(f"computer's first card {computer[0]}")
+    return score
 
 
 calculate_score(user_cards, computer_cards)
 
 
+def is_blackjack():
+    user_score = calculate_score(user_cards, computer_cards)[0]
+    computer_score = calculate_score(user_cards, computer_cards)[1]
+    print(user_score)
+    print(computer_score)
+
+    if user_score == 0 or user_score > 21:
+        game_over = True
+    if computer_score == 0 or computer_score > 21:
+        game_over = True
+
+
+# is_blackjack()
 # Hint 9: Call calculate_score(). If the computer or the user has a blackjack (0) or if the user's score is over 21, then the game ends.
 
 # Hint 10: If the game has not ended, ask the user if they want to draw another card. If yes, then use the deal_card() function to add another card to the user_cards List. If no, then the game has ended.
