@@ -36,8 +36,8 @@
 
 import random
 
-# cards = [11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10]
-cards = [10, 11, 10]
+cards = [11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10]
+# cards = [10, 11, 10]
 
 
 def deal_card():
@@ -64,51 +64,69 @@ computer_cards.append(deal_card())
 game_over = False
 
 
-def check_ace(hand):
-    if 11 in hand:
-        if sum(hand) > 21:
-            hand.remove(11)
-            hand.append(1)
-
-
-def calculate_score(user, computer):
+def calculate_score(user_hand, computer_hand):
     score = []
 
-    user = user_cards
-    check_ace(hand=user)
-    user_score = sum(user)
+    def check_ace(hand):
+        if 11 in hand:
+            if sum(hand) > 21:
+                hand.remove(11)
+                hand.append(1)
 
-    computer = computer_cards
-    check_ace(hand=computer)
-    computer_score = sum(computer)
+    check_ace(hand=user_hand)
+    user_score = sum(user_hand)
+
+    check_ace(hand=computer_hand)
+    computer_score = sum(computer_hand)
+
+    def blackjack(hand):
+        if len(hand) == 2 and sum(hand) == 21:
+            return 0
+
+    if blackjack(user_hand) == 0:
+        user_score = 0
+    if blackjack(computer_hand) == 0:
+        computer_score = 0
 
     score.append(user_score)
     score.append(computer_score)
-    print(f"Your Cards {user}, current score: {user_score}")
-    print(f"computer's first card {computer[0]}")
+
+    print(f"Your Cards {user_hand}, current score: {user_score}")
+    print(
+        f"computer's first card {computer_hand[0]} computer score: {computer_score}")
     return score
 
 
-calculate_score(user_cards, computer_cards)
+score = calculate_score(user_cards, computer_cards)
+
+user_score = score[0]
+computer_score = score[1]
 
 
-def is_blackjack():
-    user_score = calculate_score(user_cards, computer_cards)[0]
-    computer_score = calculate_score(user_cards, computer_cards)[1]
-    print(user_score)
-    print(computer_score)
+def is_blackjack(u_score, c_score):
 
-    if user_score == 0 or user_score > 21:
-        game_over = True
-    if computer_score == 0 or computer_score > 21:
-        game_over = True
+    if u_score == 0 or u_score > 21:
+        return True
+    elif c_score == 0 or c_score > 21:
+        return True
+    else:
+        return False
 
 
-# is_blackjack()
+game_over = is_blackjack(u_score=user_score, c_score=computer_score)
+
+print(game_over)
+
 # Hint 9: Call calculate_score(). If the computer or the user has a blackjack (0) or if the user's score is over 21, then the game ends.
 
 # Hint 10: If the game has not ended, ask the user if they want to draw another card. If yes, then use the deal_card() function to add another card to the user_cards List. If no, then the game has ended.
 
+if game_over == False:
+    # hit = input("Do you want to draw another card? 'y' or 'n' ")
+    hit = 'y'
+    if hit == 'y':
+        user_cards.append(deal_card())
+        score = calculate_score(user_cards, computer_cards)
 # Hint 11: The score will need to be rechecked with every new card drawn and the checks in Hint 9 need to be repeated until the game ends.
 
 # Hint 12: Once the user is done, it's time to let the computer play. The computer should keep drawing cards as long as it has a score less than 17.
