@@ -35,6 +35,7 @@
 # 11 is the Ace.
 
 import random
+from art import logo
 
 cards = [11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10]
 # cards = [10, 11, 10]
@@ -91,9 +92,6 @@ def calculate_score(user_hand, computer_hand):
     score.append(user_score)
     score.append(computer_score)
 
-    print(f"Your Cards {user_hand}, current score: {user_score}")
-    print(
-        f"computer's first card {computer_hand[0]} computer score: {computer_score}")
     return score
 
 
@@ -115,18 +113,36 @@ def is_blackjack(u_score, c_score):
 
 game_over = is_blackjack(u_score=user_score, c_score=computer_score)
 
-print(game_over)
+
+def another_card():
+    next_card = 'y'
+    return next_card
+
+
+play = 'y'
+
+while game_over is False:
+    if play == 'y':
+        # print(logo)
+        print('dealing cards...')
+
+        def status():
+            print(f'Your Cards: {user_cards}, Your score: {user_score}')
+            print(f"computer first card: {computer_cards[0]}")
+        status()
+        calculate_score(user_hand=user_cards, computer_hand=computer_cards)
+        another_card()
+        if another_card() == 'y':
+            user_cards.append(deal_card())
+        status()
+
+    break
 
 # Hint 9: Call calculate_score(). If the computer or the user has a blackjack (0) or if the user's score is over 21, then the game ends.
 
 # Hint 10: If the game has not ended, ask the user if they want to draw another card. If yes, then use the deal_card() function to add another card to the user_cards List. If no, then the game has ended.
 
-if game_over == False:
-    # hit = input("Do you want to draw another card? 'y' or 'n' ")
-    hit = 'y'
-    if hit == 'y':
-        user_cards.append(deal_card())
-        score = calculate_score(user_cards, computer_cards)
+
 # Hint 11: The score will need to be rechecked with every new card drawn and the checks in Hint 9 need to be repeated until the game ends.
 
 # Hint 12: Once the user is done, it's time to let the computer play. The computer should keep drawing cards as long as it has a score less than 17.
