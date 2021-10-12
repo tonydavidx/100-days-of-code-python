@@ -88,6 +88,18 @@ def game():
                 print(f'Your cards: {user_cards} Your Score: {user_score}')
                 print(
                     f"computer first card {computer_cards[0]}")
+            else:
+                print('computer turn')
+                while game_over(user_score, computer_score) == False:
+                    while computer_score < 17:
+                        deal_card(computer_cards)
+                        score = calculate_score(user_cards, computer_cards)
+                        user_score = score[0]
+                        computer_score = score[1]
+                        print(
+                            f'Your cards: {user_cards} Your Score: {user_score}')
+                        print(
+                            f"computer first card {computer_cards[0]}")
 
 
 game()
