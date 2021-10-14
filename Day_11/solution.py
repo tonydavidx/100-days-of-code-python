@@ -37,19 +37,37 @@
 import random
 from art import logo
 
-cards = [11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10]
-# cards = [10, 11, 10]
-
 
 def calculate_score(cards):
 
     if sum(cards) == 21 and len(cards) == 2:
         return 0
+
     if 11 in cards and sum(cards) > 21:
         cards.remove(11)
         cards.append(1)
 
     return sum(cards)
+
+
+# Hint 13: Create a function called compare() and pass in the user_score and computer_score. If the computer and user both have the same score, then it's a draw. If the computer has a blackjack (0), then the user loses. If the user has a blackjack (0), then the user wins. If the user_score is over 21, then the user loses. If the computer_score is over 21, then the computer loses. If none of the above, then the player with the highest score wins.
+
+
+def compare_score(user_score, computer_score):
+    if user_score == computer_score:
+        print("you both have same score Draw 😒")
+    elif computer_score == 0:
+        print('computer have blackjack You Loose')
+    elif user_score == 0:
+        print("You have blackjack you win")
+    elif user_score > 21:
+        print("Your score is over 21 you loose")
+    elif computer_score > 21:
+        print("computer score is over 21 You win")
+    elif user_score > computer_score:
+        print(f"your score is {user_score} you win!")
+    else:
+        print("You loose")
 
 
 def deal_card():
@@ -81,8 +99,10 @@ while not game_over:
             game_over = True
 
 while computer_score != 0 and computer_score < 17:
-    computer_cards.append(deal_card)
-    calculate_score(computer_cards)
+    computer_cards.append(deal_card())
+    computer_score = calculate_score(computer_cards)
+
+print(compare_score(user_score, computer_score))
 
 # Hint 6: Create a function called calculate_score() that takes a List of cards as input
 # and returns the score.
@@ -101,6 +121,5 @@ while computer_score != 0 and computer_score < 17:
 
 # Hint 12: Once the user is done, it's time to let the computer play. The computer should keep drawing cards as long as it has a score less than 17.
 
-# Hint 13: Create a function called compare() and pass in the user_score and computer_score. If the computer and user both have the same score, then it's a draw. If the computer has a blackjack (0), then the user loses. If the user has a blackjack (0), then the user wins. If the user_score is over 21, then the user loses. If the computer_score is over 21, then the computer loses. If none of the above, then the player with the highest score wins.
 
 # Hint 14: Ask the user if they want to restart the game. If they answer yes, clear the console and start a new game of blackjack and show the logo from art.py.
