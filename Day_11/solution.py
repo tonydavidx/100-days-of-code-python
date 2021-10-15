@@ -36,6 +36,7 @@
 
 import random
 from art import logo
+import os
 
 
 def calculate_score(cards):
@@ -77,33 +78,45 @@ def deal_card():
 
 
 # Hint 5: Deal the user and computer 2 cards each using deal_card() and append().
-user_cards = []
-computer_cards = []
-game_over = False
+def game():
+    print(logo)
+    user_cards = []
+    computer_cards = []
+    game_over = False
 
-for _ in range(2):
-    user_cards.append(deal_card())
-    computer_cards.append(deal_card())
-while not game_over:
-    user_score = calculate_score(user_cards)
-    computer_score = calculate_score(computer_cards)
-    print(f"Your cards: {user_cards} current score: {user_score}")
-    print(f"Computer first card: {computer_cards[0]}")
-    if user_score == 0 or computer_score == 0 or user_score > 21:
-        game_over = True
-    else:
-        want_deal = input("Want to get another card 'Y' or 'N'").lower()
-        if want_deal == 'y':
-            user_cards.append(deal_card())
-        else:
+    for _ in range(2):
+        user_cards.append(deal_card())
+        computer_cards.append(deal_card())
+
+    while not game_over:
+        user_score = calculate_score(user_cards)
+        computer_score = calculate_score(computer_cards)
+        print(f"Your cards: {user_cards} current score: {user_score}")
+        print(f"Computer first card: {computer_cards[0]}")
+        if user_score == 0 or computer_score == 0 or user_score > 21:
             game_over = True
+        else:
+            want_deal = input("Want to get another card 'Y' or 'N'").lower()
+            if want_deal == 'y':
+                user_cards.append(deal_card())
+            else:
+                game_over = True
 
-while computer_score != 0 and computer_score < 17:
-    computer_cards.append(deal_card())
-    computer_score = calculate_score(computer_cards)
+    while computer_score != 0 and computer_score < 17:
+        computer_cards.append(deal_card())
+        computer_score = calculate_score(computer_cards)
 
-print(compare_score(user_score, computer_score))
+    print(f"Yours cards {user_cards} your final score {user_score}")
+    print(
+        f"Computer cards {computer_cards} computer final score {computer_score}")
+    compare_score(user_score, computer_score)
 
+
+while input("Do you want to play a game of blackjack 'Y' or 'N': ").lower() == 'y':
+    os.system("cls || clear")
+    game()
+
+# exit()
 # Hint 6: Create a function called calculate_score() that takes a List of cards as input
 # and returns the score.
 # Look up the sum() function to help you do this.
@@ -116,10 +129,8 @@ print(compare_score(user_score, computer_score))
 
 # Hint 10: If the game has not ended, ask the user if they want to draw another card. If yes, then use the deal_card() function to add another card to the user_cards List. If no, then the game has ended.
 
-
 # Hint 11: The score will need to be rechecked with every new card drawn and the checks in Hint 9 need to be repeated until the game ends.
 
 # Hint 12: Once the user is done, it's time to let the computer play. The computer should keep drawing cards as long as it has a score less than 17.
-
 
 # Hint 14: Ask the user if they want to restart the game. If they answer yes, clear the console and start a new game of blackjack and show the logo from art.py.
