@@ -14,13 +14,21 @@ number = random.randint(1, 100)
 
 difficulty = input("choose game difficulty 'easy' or 'hard'? ").lower()
 
-
 if difficulty == 'easy':
     difficulty = 10
 elif difficulty == 'hard':
     difficulty = 5
 else:
-    difficulty = input("choose game difficulty 'easy' or 'hard'? ").lower()
+    difficulty = 10
 
-
-print(difficulty)
+while difficulty != 0:
+    print(f'you have {difficulty} attemps remaining')
+    guess = int(input('whats your guess? '))
+    if guess == number:
+        print(f'you got it the answer was {number}')
+        exit()
+    elif guess > number:
+        print('too high')
+    elif guess < number:
+        print('too low')
+    difficulty -= 1
