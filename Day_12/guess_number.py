@@ -7,7 +7,7 @@
 import random
 from art import art
 
-# print(art)
+print(art)
 print("Welcome to the number guessing game\nI am thinking of a number between 1 and 100")
 
 number = random.randint(1, 100)
@@ -31,4 +31,9 @@ while difficulty != 0:
         print('too high')
     elif guess < number:
         print('too low')
+
     difficulty -= 1
+
+    if difficulty == 0:
+        print('You ran out of moves game over')
+        exit()
