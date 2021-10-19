@@ -1,5 +1,5 @@
 {
-  "workbench.colorTheme": "Eva Dark",
+  "workbench.colorTheme": "Gruvbox Dark (Hard)",
   "python.linting.pylintEnabled": true,
   "python.linting.enabled": true,
   "python.linting.flake8Enabled": false,
