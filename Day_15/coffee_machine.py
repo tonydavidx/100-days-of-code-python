@@ -48,7 +48,10 @@ def insert_coins():
 
 def get_drink(drink):
     drink_cost = MENU[drink]['cost']
+    get_resources(drink)
+
     print(f"{drink} cost is {drink_cost}")
+
     user_money = insert_coins()
 
     if user_money < drink_cost:
@@ -60,6 +63,24 @@ def get_drink(drink):
 
     global money
     money += drink_cost
+
+    reduce_resources(drink)
+
+
+def get_resources(drink):
+    for resource in resources:
+        if resource in MENU[drink]['ingredients']:
+            if resources[resource] < MENU[drink]['ingredients'][resource]:
+                print(f'Sorry! we are out of {resource}')
+
+
+def reduce_resources(drink):
+    global resources
+
+    for resource in resources:
+        if resource in MENU[drink]['ingredients']:
+            resources[resource] = resources[resource] - \
+                MENU[drink]['ingredients'][resource]
 
 
 while True:
