@@ -36,31 +36,31 @@ money = 0
 out_of_stock = []
 
 
-def insert_coins():
+def get_payment():
     print('Please insert coins.')
     total_coins = 0
-    # num_quarters = 0.25 * int(input('how many quarters?: '))
-    # num_dimes = 0.10 * int(input('how many dimes?: '))
-    # num_nickel = 0.5 * int(input('how many nickels?: '))
-    # num_pennies = 0.1 * int(input('how many pennies?: '))
-    # total_coins = num_quarters + num_dimes + num_nickel + num_pennies
-    total_coins = 11.5
+    num_quarters = 0.25 * int(input('how many quarters?: '))
+    num_dimes = 0.10 * int(input('how many dimes?: '))
+    num_nickel = 0.5 * int(input('how many nickels?: '))
+    num_pennies = 0.1 * int(input('how many pennies?: '))
+    total_coins = num_quarters + num_dimes + num_nickel + num_pennies
     return total_coins
 
 
-def get_drink(drink):
+def make_coffee(drink):
     drink_cost = MENU[drink]['cost']
 
     if get_resources(drink) == True:
-        print(f'Sorry we are out of{out_of_stock[0]}')
+        print(f'Sorry we are out of {out_of_stock[0]}')
     else:
         print(f"{drink} cost is {drink_cost}")
-        user_money = insert_coins()
-        if user_money < drink_cost:
+        payment = get_payment()
+        if payment < drink_cost:
             print('Sorry thats not enough money')
         else:
             print(f"Here is your {drink} 🍵. Enjoy!")
-            change = user_money - drink_cost
+            change = payment - drink_cost
+            change = format(change, '.2f')
             print(f"Here is your change ${change}")
 
             global money
@@ -96,11 +96,11 @@ while True:
 
     for d in drinks:
         if d in user_input:
-            get_drink(user_input)
+            make_coffee(user_input)
 
     if user_input == 'report':
         print(
-            f"water: {resources['water']}\nMilk: {resources['milk']}\nCoffee: {resources['coffee']}\nMoney: {money}$")
+            f"water: {resources['water']}ml\nMilk: {resources['milk']}ml\nCoffee: {resources['coffee']}g\nMoney: {money}$")
 
     if user_input == 'off':
         print('machine turned off')
