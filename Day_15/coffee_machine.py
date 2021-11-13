@@ -33,6 +33,8 @@ resources = {
 
 money = 0
 
+out_of_stock = []
+
 
 def insert_coins():
     print('Please insert coins.')
@@ -48,30 +50,34 @@ def insert_coins():
 
 def get_drink(drink):
     drink_cost = MENU[drink]['cost']
-    get_resources(drink)
 
-    print(f"{drink} cost is {drink_cost}")
-
-    user_money = insert_coins()
-
-    if user_money < drink_cost:
-        print('Sorry thats not enough money')
+    if get_resources(drink) == True:
+        print(f'Sorry we are out of{out_of_stock[0]}')
     else:
-        print(f"Here is your {drink} 🍵. Enjoy!")
-        change = user_money - drink_cost
-        print(f"Here is your change ${change}")
+        print(f"{drink} cost is {drink_cost}")
+        user_money = insert_coins()
+        if user_money < drink_cost:
+            print('Sorry thats not enough money')
+        else:
+            print(f"Here is your {drink} 🍵. Enjoy!")
+            change = user_money - drink_cost
+            print(f"Here is your change ${change}")
 
-    global money
-    money += drink_cost
+            global money
+            money += drink_cost
 
-    reduce_resources(drink)
+            reduce_resources(drink)
 
 
 def get_resources(drink):
+    global out_of_stock
+    no_stock = False
     for resource in resources:
         if resource in MENU[drink]['ingredients']:
             if resources[resource] < MENU[drink]['ingredients'][resource]:
-                print(f'Sorry! we are out of {resource}')
+                no_stock = True
+                out_of_stock.append(resource)
+    return no_stock
 
 
 def reduce_resources(drink):
