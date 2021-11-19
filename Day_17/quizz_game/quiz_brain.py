@@ -3,6 +3,8 @@ class QuizBrain:
         self.question_number = 0
         self.question_list = q_list
         self.score = 0
+        print('hello')
+        print(self.question_list)
 
     def still_has_questions(self):
         if self.question_number < len(self.question_list):
@@ -25,4 +27,5 @@ class QuizBrain:
         self.question_number += 1
         answer = input(
             f"Q.{self.question_number}: {current_question.text} (True or False): ")
+
         self.check_answer(answer, current_question.answer)
