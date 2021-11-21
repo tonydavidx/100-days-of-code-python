@@ -1,50 +1,34 @@
-from turtle import Turtle, Screen
+import turtle as t
 import random
-import turtle
-
-tim = Turtle()
-screen = Screen()
-random_x = random.randint(50, 70)
-random_Y = random.randint(50, 70)
 
 
-colors = ['CadetBlue', 'Brown', 'aquamarine',
-          'DarkBlue', 'DarkGreen', 'DarkCyan', 'DeepPink', 'DarkViolet']
+tim = t.Turtle()
+screen = t.Screen()
 
-tim.hideturtle()
-tim.penup()
-tim.width(10)
-tim.sety(screen.window_height() / random_Y)
-tim.setx(screen.window_width() / random_x)
-tim.showturtle()
-tim.pendown()
+t.colormode(255)
 
-tim.speed('normal')
+
+def random_color():
+    a = random.randint(0, 255)
+    b = random.randint(0, 255)
+    c = random.randint(0, 255)
+    return (a, b, c)
+
+
+tim.speed('fast')
+
+directions = [0, 90, 180, 270]
+
+tim.pensize(10)
 
 
 def random_walk(steps):
     for _ in range(steps):
-        tim.color(random.choice(colors))
-        random.choice([tim.left(random.choice([90, 180])),
-                      tim.right(random.choice([90, 180]))])
+        tim.color(random_color())
+        tim.setheading(random.choice(directions))
         tim.forward(30)
 
 
-# def random_walk(steps):
-#     for step in range(steps):
-#         tim.color(random.choice(colors))
-#         if step % 2 == 0:
-#             tim.left(random.choice([90, 180]))
-#             tim.forward(30)
-#         elif step % 3 == 0:
-#             tim.right(random.choice([90, 180]))
-#             tim.forward(30)
-#         else:
-#             random.choice([tim.left(45),
-#                           tim.right(45)])
-#             tim.forward(30)
-
-
-random_walk(random.randint(20, 100))
+random_walk(random.randint(100, 200))
 
 screen.exitonclick()
