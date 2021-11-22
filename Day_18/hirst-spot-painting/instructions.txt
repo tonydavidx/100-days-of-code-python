@@ -1,0 +1,2 @@
+10 by 10 rows
+dot size 20 space between dots 50
