@@ -46,5 +46,6 @@ for _ in range(10):
     tim.goto(x, y)
     one_line()
 
+tim.hideturtle()
 
 screen.exitonclick()
