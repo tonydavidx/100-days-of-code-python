@@ -41,7 +41,6 @@ while is_race_on:
             winning_colors = t.pencolor()
             if winning_colors == user_bet:
                 print(f"You've Won {winning_colors} is the winner")
-
             else:
                 print(f"You've Lost {winning_colors} is the winning color")
 
