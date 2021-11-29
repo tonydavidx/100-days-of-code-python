@@ -4,7 +4,17 @@ data = pandas.read_csv('./squirrel_data.csv')
 
 fur_colors = data['Primary Fur Color'].value_counts()
 
-fur_colors.rename('c')
-fur_colors.to_csv('fur_colors.csv')
+gray_squirrel = len(data[data['Primary Fur Color'] == 'Gray'])
+cinnamon_squirrel = len(data[data['Primary Fur Color'] == 'Cinnamon'])
+black_squirrel = len(data[data['Primary Fur Color'] == 'Black'])
 
-print(data['Primary Fur Color'].value_counts())
+my_dict = {
+    'colors': ['Gray', 'Cinnamon', 'Black'],
+    'Count': [gray_squirrel, cinnamon_squirrel, black_squirrel]
+}
+
+df = pandas.DataFrame(my_dict)
+
+df.to_csv('fur_colors.csv')
+
+print(df)
