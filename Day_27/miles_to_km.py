@@ -9,6 +9,7 @@ window.config(padx=20, pady=20)
 def convert():
     miles = miles_input.get()
     print(miles)
+    # need to convert miles input from string to float
     km = float(miles) * 1.609
     print(km)
     km_input.delete(0, END)
