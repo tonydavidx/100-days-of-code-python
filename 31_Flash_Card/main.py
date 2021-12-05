@@ -6,6 +6,7 @@ BACKGROUND_COLOR = "#B1DDC6"
 
 next_word = {}
 to_learn = {}
+filp_timer = None
 
 try:
     words_to_learn = pandas.read_csv('./data/words_to_learn.csv')
