@@ -1,8 +1,8 @@
 import smtplib
 import datetime as dt
 import random
-email = 'tonydavidmi@gmail.com'
-password = 'opvomzekbduxzxjs'
+email = ''
+password = ''
 
 with open('quotes.txt', 'r') as quotes_file:
     quotes = quotes_file.readlines()
@@ -16,7 +16,7 @@ if today == 0:
         connection.login(email, password)
         connection.sendmail(
             from_addr=email,
-            to_addrs='antonydavidmi@gmail.com',
+            to_addrs='',
             msg=f'Subject:Quotes of the day\n\n{random.choice(quotes)}',
         )
     print('Email sent')
