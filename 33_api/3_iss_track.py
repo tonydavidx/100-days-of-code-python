@@ -47,7 +47,6 @@ def is_iss_close():
 
 
 while True:
-    print(f"Latitude: {MY_LAT} Longitude: {MY_LON}")
     if hour_now > sunset_hour or hour_now < sunrise_hour:
         if is_iss_close():
             with smtplib.SMTP('smtp.gmail.com', 587) as smtp:
