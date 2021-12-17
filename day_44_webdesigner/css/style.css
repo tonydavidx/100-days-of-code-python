@@ -1,0 +1,43 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.red_container {
+  height: 500px;
+  width: 400px;
+  background-color: aqua;
+  position: relative;
+  display: block;
+}
+
+/* .red {
+  background-color: red;
+  height: 200px;
+  width: 200px;
+  position: relative;
+  right: 10px;
+} */
+.red {
+  background-color: red;
+  height: 200px;
+  width: 200px;
+  position: absolute;
+  right: 100px;
+}
+/* 
+.blue {
+  background-color: blue;
+  height: 200px;
+  width: 200px;
+  position: absolute;
+  left: 200px;
+  top: 200px;
+}
+
+.yellow {
+  background-color: yellow;
+  height: 200px;
+  width: 200px;
+  position: absolute;
+} */
