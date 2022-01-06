@@ -27,7 +27,7 @@ def ten_percent_down(price):
     return price
 
 
-target_price = 62000
+target_price = ten_percent_down(price)
 
 
 def send_alert():

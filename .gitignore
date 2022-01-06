@@ -2,3 +2,4 @@ code100days
 __pycache__
 config.py
 .cache
+code-env
