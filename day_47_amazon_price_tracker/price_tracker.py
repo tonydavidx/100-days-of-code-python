@@ -12,7 +12,6 @@ soup = BeautifulSoup(response.content, 'lxml')
 
 product_title = soup.find(id='productTitle').get_text().strip()
 
-
 price = soup.find(
     'span', class_='a-price a-text-price a-size-medium apexPriceToPay')
 
@@ -36,7 +35,6 @@ def send_alert():
         connection.login(user=config.email, password=config.password)
         connection.sendmail(
             from_addr=config.email, to_addrs=config.email, msg=f'Subject: Price Drop alert\n\nProduct: {product_title}\nThe price dropped to {price}')
-
 
 if int(price) < target_price:
     send_alert()
