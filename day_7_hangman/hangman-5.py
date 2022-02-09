@@ -1,8 +1,9 @@
 import random
 import hangman_words
 import hangman_art
+# choosing a random word from the list of words in hangman_words.py
 chosen_word = random.choice(hangman_words.word_list)
-word_length = len(chosen_word)
+word_length = len(chosen_word)  # find out character length of chosen word
 
 end_of_game = False
 lives = 6
