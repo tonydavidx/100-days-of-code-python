@@ -3,6 +3,7 @@ from flask import Flask
 app = Flask(__name__)
 
 rand_number = random.randint(1, 9)
+print(rand_number)
 
 
 def add_image(image_url, width):
@@ -13,7 +14,7 @@ def add_image(image_url, width):
 def guess(number):
     if number == rand_number:
         return f'<h1> That is Correct!</h1>\
-            {add_image("https://media.giphy.com/media/UAXK9VGoJTbdcPgmcJ/giphy.gif",300)}'
+            {add_image("https://media.giphy.com/media/UAXK9VGoJTbdcPgmcJ/giphy.gif",400)}'
     elif number < rand_number:
         return f'<h1> Too Low!</h1>\
             {add_image("https://media.giphy.com/media/cMJHOY2jGEHn2L48PC/giphy.gif", 400)}'
