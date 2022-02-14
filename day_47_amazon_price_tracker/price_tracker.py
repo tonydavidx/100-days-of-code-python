@@ -5,6 +5,7 @@ import math
 import config
 
 user_agent = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.110 Safari/537.36 Edg/96.0.1054.62'
+
 product = 'https://www.amazon.in/ASUS-i5-10300H-Graphics-Fortress-FX566LH-HN257T/dp/B08CRMTKMK/'
 
 response = requests.get(product, headers={'User-Agent': user_agent})
@@ -35,6 +36,7 @@ def send_alert():
         connection.login(user=config.email, password=config.password)
         connection.sendmail(
             from_addr=config.email, to_addrs=config.email, msg=f'Subject: Price Drop alert\n\nProduct: {product_title}\nThe price dropped to {price}')
+
 
 if int(price) < target_price:
     send_alert()
