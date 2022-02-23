@@ -1,9 +1,6 @@
-def disemvowel(string_):
-    vowels = ['a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U']
-    for s in string_:
-        if s in vowels:
-            string_ = string_.replace(s, '')
-    return string_
+# create list of names
 
+names = ['Alice', 'Bob', 'Charlie']
 
-print(disemvowel('This website is for losers LOL!'))
+for id, name in enumerate(names):
+    print(id, name)
