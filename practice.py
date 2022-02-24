@@ -1,6 +1,4 @@
-# create list of names
+names = []
 
-names = ['Alice', 'Bob', 'Charlie']
-
-for id, name in enumerate(names):
-    print(id, name)
+if not names:
+    print("No names in the list")
