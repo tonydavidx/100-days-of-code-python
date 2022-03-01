@@ -17,6 +17,7 @@
 <div class="container">
   <h1 class="heading">My Top 10 Movies</h1>
   <p class="description">These are my all time favourite movies.</p>
+
   {% for movie in movies %}
   <div class="card">
     <div class="front" style="background-image: url('{{movie.img_url}}');">

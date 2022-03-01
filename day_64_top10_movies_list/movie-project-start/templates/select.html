@@ -14,9 +14,8 @@
 <div class="container">
   <h1 class="heading">Select Movie</h1>
   {% for result in results: %}
-  {% set year = result['release_date'].split('-')[0] %}
   <p>
-    <a href="#">{{ result.title }} ({{ year }}) </a>
+    <a href="{{ url_for('find_movie',id=result.id) }}">{{ result.title }} - {{ result.release_date.split('-')[0] }} </a>
   </p>
   {% endfor %}
 
