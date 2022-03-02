@@ -48,7 +48,7 @@ db.create_all()
 
 @app.route("/")
 def home():
-    all_movies = Movie.query.all()
+    all_movies = Movie.query.order_by(Movie.ranking).all()
     return render_template("index.html", movies=all_movies)
 
 
